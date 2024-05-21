@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="CSS_3_prosject.css">
+        <script src="https://kit.fontawesome.com/d3202dc99e.js" crossorigin="anonymous"></script>
+
+        <title>Spillprogrammering</title>
+    </head>
+    <body>
+
+
+            <div id="load_bilde">
+                <img src="Bilder/1_Loading.jpeg" alt="Loading screen">
+            </div>
+<div id="se_ikkese">
+
+        
+            <div id="header">
+                <div id="i_elementene">
+                    <a href="#"><i class="fa-regular fa-file-code" style="color: black;"></i></a>
+                    <ul id="hamburger">
+                        <li><a href="#link1">Et enkelt spill</a></li>
+                        <li><a href="#link2">Bevegelse i spill med canvas</a></li>
+                        <li><a href="#link3">Veggtennis</a></li>
+                    </ul>
+                    <button onclick="burger_meny()">
+                        <i class="fa-solid fa-burger" style="color: black;
+                        display: block; position: absolute; right: 10px; top: 10px;"></i>
+                    </button>
+                </div>
+            
+            <hero>
+                <div id="hero">
+                    <h1><span class="big_start">10</span> Spillprogrammering <span class="liten_skrift">Kode 2</span></h1>
+                </div>
+            </hero>
+        
+        
+
+        <div class="delkapittel">
+            <h1 id="link1" >Et enkelt spill</h1>
+            <div id="deloverskrifter_1">
+                <h2 >Et klikk oppdaterer spillet</h2>
+                <div>
+                    <p>En viktig del av et spill er hyppige oppdateringer for at spillet som programmeres skal 
+                        kunne ha funksjoner som en stoppeklokke som viser tiden til spilleren konstant eller kanskje skal noe animeres i spillet.</p>
+                    <p>Tidligere i kapittel 5 i Kode 2 boken forklartes det at man kan legge det du ønsker skal 
+                        repeteres i en funksjon og så kalde funksjonen igjen og igjen. Denne gjentagelsen kan gjøres 
+                        ved en onclick eller mouseover strategi, eller automatisk. Vi skal se mer på den automatiske 
+                        senere i kapittelet, men først skal vi se på et program der poengene til spilleren går opp 
+                        med to hver gang de klikker på musen</p>
+                    <p>Variabelen poeng er en global variabel for at den kunne bygges på å ikke bare defineres som 0 hver runde. </p>
+                </div>
+                <div>
+                    <div class="eks_skjerm">
+                        <span id="visPoeng">0 poeng</span>
+                        <img id="mus" onclick="merPoeng()" src="Bilder/mus.png">
+                    </div>
+
+                    <div class="eks_kode">
+                        <p>
+                            &ltbody&gt <br>
+                            &emsp;    &ltimg id="mus" onclick="merPoeng()" src="mus.png"&gt <br>
+                            &emsp;    &ltscript&gt <br>
+                            &emsp;&emsp;      let visPoeng = document.getElementById("visPoeng")<br>
+                            &emsp;&emsp;       let mus = document.getElementById("mus")<br>
+                            &emsp;&emsp;     let poeng = 0<br>
+                            &emsp;&emsp;       <br>
+                            &emsp;&emsp;       function merPoeng(){<br>
+                            &emsp;&emsp;&emsp;          poeng += 10<br>
+                            &emsp;&emsp;&emsp;           visPoeng.innerHTML = poeng + " poeng"<br>
+                            &emsp;&emsp;       }<br>
+                            &emsp;    &lt/script&gt <br>
+                            &lt/body&gt
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div id="deloverskrifter_2">
+                <h2>Endrer plasseringen av et img-element</h2>
+                <div>
+                <p>Nå videre kan vi ta programmet til et nytt nivå ved å legge til en funksjon som flytter musen til et tilfeldig sted innenfor ruta. Altså skal vi bytte y og x koordinatene til img-elementet hver gang spilleren klikker på den. Vi vet at en skjerm har et koordinatsystem der koordinatene er (0,0) oppe i venstre hjørne. Som style skriver vi inn bredden på figuren og hvor lang tid den skal bruke på overgangen mellom to posisjoner.</p>
+                <p>Nå lager vi en funksjon for å finne x og y posisjonen til img-elementet. For å finne passene kordinater tar vi et tilfeldig tall ved å bruke Math.random() ganget med skjermbredden minus figurbredden for at den ikke skal komme utafor. Vi finner kordinatene for top og left og skriver det slik: mus.style.left = xpos + «px»</p>
+                </div>
+                <div>
+                    <div class="eks_kode">
+                        <p>
+                            &ltstyle&gt <br>
+                            &emsp;#mus { <br>
+                                &emsp;&emsp;width: 100px; <br>
+                                &emsp;&emsp;position: absolute; <br>
+                                &emsp;&emsp;transition: 0.2s; <br>
+                            &emsp;    } <br>
+                            &lt/style&gt <br>
+                        </p>
+                    </div>
+                    <div class="eks_kode">
+                        <p>
+                            &ltbody&gt <br>
+                            &emsp;    &ltimg id="mus" src="mus.png"&gt <br>
+                            &emsp;        &ltscript&gt <br>
+                            &emsp;&emsp;        let mus = document.getElementById("mus")<br>
+                            &emsp;&emsp;        function flyttMeg() { <br>
+                            &emsp;&emsp;&emsp;            let xpos = Math.random()*(innerwidth - 100) <br>
+                            &emsp;&emsp;&emsp;            let ypos = Math.random()*(innerheight - 100) <br>
+                            &emsp;&emsp;&emsp;           mus.style.left = xpos + "px" <br>
+                            &emsp;&emsp;&emsp;            mus.style.top = ypos + "px" <br>
+                            &emsp;&emsp;        } <br>
+                            &emsp;       &lt/script&gt <br>
+                            &lt/body&gt
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div id="deloverskrifter_3">
+                <h2>Gi poeng og endre plassering til et img-element</h2>
+                <p>Her er hele koden satt sammen. Når musen blir klikken får spilleren 10 poeng som blir vist på skjermen, i tillegg flytter musen seg til et nytt tilfeldig sted. Dette er skjelettet til koden, et annet eksempel er denne nestsiden her: SKRIV LINK HER</p>
+                
+               <div>
+                <div class="eks_skjerm">
+                    <span id="visPoeng_2">0 poeng</span>
+                    <img id="mus_2" onclick="flyttMeg()" src="Bilder/mus.png">
+                </div>
+
+                <div class="eks_kode">
+                    <p>
+                        &lthead&gt <br>
+                        &emsp;    &ltstyle&gt <br>
+                        &emsp;&emsp;        #mus { <br>
+                        &emsp;&emsp;&emsp;            width: 100px; <br>
+                        &emsp;&emsp;&emsp;            position: absolute; <br>
+                        &emsp;&emsp;&emsp;            transition: 0.2s; <br>
+                        &emsp;&emsp;        } <br>
+                        &emsp;    &lt/style&gt <br>
+                        &lt/head&gt <br>
+                        &ltbody&gt <br>
+                        &emsp;    &ltspan id="visPoeng"&gt0 poeng&lt/span&gt <br>
+                        &emsp;    &ltimg id="mus" src="mus.png"&gt <br>
+                        &emsp;    &ltscript&gt <br>
+                        &emsp;&emsp;           let visPoeng = document.getElementById("visPoeng") <br>
+                        &emsp;&emsp;            let mus = document.getElementById("mus")<br>
+                        &emsp;&emsp;            let poeng = 0 <br>
+                        &emsp;&emsp;            function flyttMeg() { <br>
+                            &emsp;&emsp;&emsp;                let xpos = Math.random()*(innerwidth - 100) <br>
+                            &emsp;&emsp;&emsp;                let ypos = Math.random()*(innerheight - 100) <br>
+                            &emsp;&emsp;&emsp;                mus.style.left = xpos + "px" <br>
+                            &emsp;&emsp;&emsp;                mus.style.top = ypos + "px" <br>
+                            &emsp;&emsp;&emsp;                poeng += 10 <br>
+                            &emsp;&emsp;&emsp;                visPoeng.innerHTML = poeng + " poeng" <br>
+                            &emsp;&emsp;            } <br>
+                            &emsp;            mus.onclick = flyttMeg <br>
+                            &emsp;    &lt/script&gt <br>
+                        &lt/body&gt
+                    </p>
+                </div>
+            </div> 
+            </div>
+            <div id="deloverskrifter_4">
+                <h2>Game loop - spillet oppdateres kontinuerlig</h2>
+                <p>En game loop -også kalt en rekursiv funksjon- er en funksjon som starter av seg selv og kaller på seg selv når de har gjort det de skal. For vår mus kode så kan vi legge til et tall som øker med 5 hver gang funksjonen er kalt. Når vi lager rekursive funksjoner er det greit å vite at de må ha en betingelse som avslutter de for å ikke få feilmelding. Derfor legger vi inn e betingelse på funksjonen. Så lenge tallet er mindre enn 100 så løper den løpsk.</p>
+            <div>
+                <div class="eks_kode">
+                    <p>
+                        &ltspan id="visTall"&gt&lt/span&gt <br>
+                        &ltscript&gt <br>
+                        &emsp;let visTall = document.getElementById("visTall") <br>
+                        &emsp;let tall = 0  <br>
+                        &emsp;function oppdatertTall() { <br>
+                            &emsp;&emsp;    tall = tall + 5 <br>
+                            &emsp;&emsp;    visTall.innerHTML = tallet <br>
+                            &emsp;&emsp;    oppdaterTall() <br>
+                            &emsp;} <br>
+                            &emsp;oppdaterTall() <br>
+                        &lt/script&gt
+                    </p>
+                </div>
+                <div class="eks_kode">
+                    <p>
+                        if(tall &lt 100) { <br>
+                            &emsp;    oppdaterTall() <br>
+                        }
+                    </p>
+                </div>
+            </div>
+            </div>
+            <div id="deloverskrifter_5">
+                <h2>Telle til 1000</h2>
+                <p>Her er et godt eksempel på en rekursiv funksjon. I dette programmet skal vi se på hvor fort en datamaskin kan telle fra null til tusen. Vi lager en funksjon som går opp med 1 og skal stoppe når tallet er 1000. <br><br> Vi ser bare tallet 1000. Dette er fordi moderne datamaskiner går så fort at de kan telle fra null til hundre på et blunk.</p>
+                
+                <div class="eks_kode">
+                    <p>
+                        &ltbody&gt <br>
+                        &emsp;    &ltdiv id="divTall" style="color: white; background: red;"&gt&lt/div&gt <br>
+                        &emsp;    &ltscript&gt <br>
+                        &emsp;&emsp;    let divTall = document.getElementById("divTall") <br>
+                        &emsp;&emsp;    let tall = 0 <br>
+                        &emsp;&emsp;    function tellOpp() { <br>
+                            &emsp;&emsp;&emsp;        divTall.innerHTML = tall <br>
+                            &emsp;&emsp;&emsp;        tall = tall + 1 <br>
+                            &emsp;&emsp;&emsp;        if( tall &lt= 1000) { <br>
+                                &emsp;&emsp;&emsp;&emsp;            tellOpp() <br>
+                            &emsp;&emsp;&emsp;        } <br>
+                            &emsp;&emsp;} <br>
+                            &emsp;&emsp;tellOpp() <br>
+                            &emsp;&lt/script&gt <br>
+                        &lt/body&gt
+                    </p>
+                </div>
+                <div id="divTall"></div>
+            </div>
+            <div id="deloverskrifter_6">
+                <h2>Forsinkelse i Game loopen</h2>
+                <p>Ofte er det ikke bra at datamaskinen går så fort som den gjør. For eksempel hvis du vil lage en slags animasjon eller andre endringer vi gjerne vil se imens den går. Da lager vi forsinkelser. En måte å gjøre dette på er requestAnimationFrame(...) hvor du kan velge hvor mye funksjonen burde forsinkes med. Hvis man ikke skriver (minFunksjon, tid), men heller bare (minFunksjon) så vil den gå vanligvis 60 ganger i sekundet (alle pc-er er forskjellig så dette kan varligere). Vi kan gjøre om forrige eksempel slik:</p>
+                
+                <div class="eks_kode">
+                    <p>
+                        function tellOpp() { <br>
+                            &emsp;    divTall.innnerHTML = tall <br>
+                            &emsp;    tall += 1 <br>
+                            &emsp;    if(tall &lt= 1000) { <br>
+                                &emsp;&emsp;        requestAnimationFrame(tellOpp) <br>
+                                &emsp;    } <br>
+                        } <br>
+                        tellOpp()
+                    </p>
+                </div>    
+
+            </div>
+            <div id="deloverskrifter_7">
+                <h2>Endre størrelsen på et div-element</h2>
+                <p>I dette eksempelet så brukes requestAnimationFrame(...) brukt til å øke høyden og bredden på et div-element helt til div-elementet har en bredde på 800px.</p>
+                
+                <div class="eks_kode">
+                    <p>
+                        &ltbody&gt <br>
+                        &emsp;    &ltdiv id="firkant" style="background: DarkOrange"&gt&lt/div&gt <br>
+                        &emsp;    &ltscript&gt <br>
+                        &emsp;&emsp;        let firkant = document.getElementById("firkant") <br>
+                        &emsp;&emsp;        let bredde = 0 <br>
+                        &emsp;&emsp;        let hoyde = 0 <br>
+                        &emsp;&emsp;        function bliStor() { <br>
+                            &emsp;&emsp;&emsp;            firkant.style.width = bredde + "px" <br>
+                            &emsp;&emsp;&emsp;            firkant.style.height = hoyde + "px" <br>
+                            &emsp;&emsp;&emsp;            bredde += 1 <br>
+                            &emsp;&emsp;&emsp;            hoyde += 1 <br>
+                            &emsp;&emsp;&emsp;            if(bredde &lt= 200) { <br>
+                                &emsp;&emsp;&emsp;&emsp;                requestAnimationFrame(bliStor) <br>
+                                &emsp;&emsp;&emsp;            } <br>
+                                &emsp;&emsp;        } <br>
+                                &emsp;&emsp;        bliStor() <br>
+                                &emsp;    &lt/script&gt <br>
+                        &lt/body&gt
+                    </p>
+                </div>
+                <div id="firkant"></div>
+            </div>
+        </div>
+
+        <div class="delkapittel">
+            <h1 id="link2">Bevegelse i spill med canvas</h1>
+            <div id="deloverskrifter_8">
+                <h2>Animere med HTML-elementer, canvas eller SVG?</h2>
+                <p>Det er flere måter å animere i kode. I løpet av Kode 2 har vi gått igjennom noen muligheter. Man kan bruke vektorgrafikk med SVG eller canvas elementer, eller mer simpelt med å endre posisjon og størrelse på html-elementer</p>
+                <p>Det er absolutt ingen fasit, med ved akkurat spill-programmering har canvas mye fordeler ved at canvas-elementet består bare av et enkelt bilde som oppdateres hver gang det skjer en forandring. Med animering ved hjelp av html eller SVG må alle bestanddelene i spillet være egne html-elementer. Hvis du ønsker da å animere regn eller snø og må ha flere hundre av dem så vil dette da bli tungt. Ulempen med canvas er at det er vanskeligere å fange opp at bestanddelene treffer hverandre.</p>
+            </div>
+            <div id="deloverskrifter_9">
+                <h2>Å animere i canvas</h2>
+                <div>
+                    <p>Canvas er et html-element, men har litt andre regler når man koder inn egenskapene. Her lager vi et canvas-element med størrelsen 100*400 piksler for å sette inn animasjonen vår her.</p>
+                    <p>Nå oppretter vi en firkant og gir den noen egenskaper i JavaScript. Vi setter farge, størrelse, fart og retning. Fart og setningen setter vi til 0.</p>
+                    <p>Nå setter vi farten per oppdatering. Hvis vi setter xfart til 2 vil den bevege seg 2 piksler, imens hvis den er 0 står den stille. Hvis vi setter xretning til 1 så har den 1 piksel til høyre, imens hvis vi setter den til -1 så går den en til venstre, og null er igjen i hvil. Så får vi bevegelsen ved å gange farten med retningen.</p>
+                    <p>Nå må vi lage en funksjon som starter bevegelsen ved å hente egenskapene ved dot-notasjon.</p>
+                </div>
+                <div>
+                <div class="eks_kode">
+                    <p>
+                        &ltbody&gt <br>
+                        &emsp;&ltcanvas id="minCanvas" width="400" height="100"&gt&lt/canvas&gt <br>
+                        &emsp;&ltscript&gt <br>
+                        &emsp;&emsp;let minCanvas = document.getElementById("minCanvas") <br>
+                        &emsp;&emsp;let ctx = minCanvas.getContext("2d") #devinerer at canvas-elemntet er to-dimensjonalt <br>
+                        &emsp;&lt/script&gt <br>
+                        &lt/body&gt
+                    </p>
+                </div>
+
+                <div class="eks_kode">
+                    <p>
+                        let firkant = { <br>
+                            &emsp;    "bredde": 2, <br>
+                            &emsp;    "hoyde": 2, <br>
+                            &emsp;    "farge": "DarkGreen", <br>
+                            &emsp;    "xpos": 5, <br>
+                            &emsp;    "ypos": 2, <br>
+                            &emsp;    "xfart": 0, <br>
+                            &emsp;    "xretning": 0, <br>
+                            &emsp;    "yfart": 0, <br>
+                            &emsp;    "yretning": 0 <br>
+                        }
+                    </p>
+                </div>
+
+                <div class="eks_kode">
+                    <p>
+                        function tegnFirkant() { <br>
+                            &emsp;    ctx.fillStyle = firkant.farge <br>
+                            &emsp;    ctx.fullRect(firkant.xpos, firkant.ypos, firkant.bredde, firkant.hoyde) <br>
+                            &emsp;    firkant.xpos = firkant.xpos + (firkant.xretning * firkant.xfart) <br>
+                            &emsp;    requestAnimationFrame(tegnFirkant) <br>
+                        } <br>
+                        tegnFirkant()
+                    </p>
+                </div>
+
+                
+            </div>
+            
+            </div>
+            <div id="deloverskrifter_10">
+                <h2>Flytte en firkant</h2>
+                <p>Nå skal vi lage et objekt med xfart på 3 og retning lik 0. Vi legger inn objektet rett før funksjoner. I funksjonen ønsker vi at x-posisjonen skal endres hver gang den kjører. Inni funksjonen må posisjonen endres sånn at den endres globalt og så må firkanten tegnes opp på nytt. Vi fyller canvas-elementet med farge for å lettere se hvor det starter og slutter. Funksjonen vil nå kjøre med forsinkelse med requestAnimationFrame().<br><br>Nå funker koden slik som den skal til nå, men den forsvinner bare ut av canvas-elementet. Vi skal lære mer om kollisjon senere i kapittelet.</p>
+                
+                <div class="eks_kode">
+                    <p>
+                        &ltbody&gt <br>
+                        &emsp;    &ltcanvas id="minCanvas" width="400" height="100"&gt&lt/canvas&gt <br>
+                        &emsp;        &ltscript&gt <br>
+                        &emsp;&emsp;            let minCanvas = document.getElementById("minCanvas") <br>
+                        &emsp;&emsp;            let ctx = minCanvas.getContext("2d") <br>
+                        &emsp;&emsp;            let firkant = { <br>
+                            &emsp;&emsp;&emsp;                "bredde": 40, <br>
+                            &emsp;&emsp;&emsp;                "hoyde": 20, <br>                                     
+                            &emsp;&emsp;&emsp;                "farge": "DarkGreen", <br>
+                            &emsp;&emsp;&emsp;                "xpos": 180, <br>
+                            &emsp;&emsp;&emsp;               "ypos": 40, <br>
+                            &emsp;&emsp;&emsp;               "xfart": 3, <br>
+                            &emsp;&emsp;&emsp;               "xretning": 1, <br>
+                            &emsp;&emsp;            } <br>
+                            &emsp;&emsp;            function tegnFirkant() { <br>
+                                &emsp;&emsp;&emsp;                ctx.fillStyle = "DarkOrange" <br>
+                                &emsp;&emsp;&emsp;                ctx.fullRect(0, 0, 400, 100) <br>
+                                &emsp;&emsp;&emsp;               ctx.fillStyle = firkant.farge <br>
+                                &emsp;&emsp;&emsp;               ctx.fullRect(firkant.xpos, firkant.ypos, firkant.bredde, firkant.hoyde) <br>
+                                &emsp;&emsp;&emsp;               firkant.xpos = firkant.xpos + (firkant.xretning * firkant.xfart) <br>
+                                &emsp;&emsp;&emsp;               requestAnimationFrame(tegnFirkant) <br>
+                                &emsp;&emsp;            } <br>
+                                &emsp;&emsp;       tegnFirkant() <br>
+                                &emsp;        &lt/script&gt <br>
+                        &lt/body&gt
+                    </p>
+                </div>
+
+            </div>
+            <div id="deloverskrifter_11">
+                <h2>Undersøke om koden fungerer med console.log</h2>
+                <p>For å undersøke om kode fungerer så kan du logge til console. Hvis man er hyppig på å logge trenger man ikke å kode ferdig hele for å finne feil eller se muligheter. I dette eksempelet så skrives det «Funksjonen starter» i console så vi vet at funksjonen funker.</p>
+                
+                <div class="eks_kode">
+                    <p>
+                        &ltbody&gt <br>
+                        &emsp;    &ltcanvas id="minCanvas" width="400" height="100"&gt&lt/canvas&gt  <br>
+                        &emsp;    &lt/script&gt <br>
+                        &emsp;&emsp;        let minCanvas = document.getElementById("minCanvas") <br>
+                        &emsp;&emsp;        let ctx = minCanvas.getContex("2d") <br>
+                        &emsp;&emsp;        function tegnFirkant() { <br>
+                            &emsp;&emsp;&emsp;            requestAnimationFrame(tegnFirkant) <br>
+                            &emsp;&emsp;        } <br>
+                            &emsp;&emsp;        tegnFirkant() <br>
+                            &emsp;    &lt/script&gt <br>
+                        &lt/body&gt
+                    </p>
+                </div>
+
+            </div>
+            <div id="deloverskrifter_12">
+                <h2>Kollisjoner</h2>
+                <p>Vi ønsker nå at firkanten inni canvan-elementet skal kunne sprette tilbake etter en kollisjon med veggene til canvas-elementet. I canvan gjør vi dette ved å konstant sjekke posisjonen til firkanten. Hvis posisjonen er 0 så er den helt til venstre i koordinatsystemet eller hvis den er like stor som canvas-elementet sin bredde. For å sjekke og handle på denne dataen så lager vi to if-setninger. En sjekker om firkanten treffer venstre vegg, hvis den er det så endrer den retningen til 1 og den andre sjekker om den treffer høyre vegg og endrer vi den til -1 hvis den gjør det. Xposisjon er venstre kant på firkanten så det er viktig å plusse på firkantens bredde for at den faktisk skal kollidere med høyre vegg. Siden firkanten flytter seg med 3 kan det være at xposisjon ikke blir 0 og derfor skriver vi i steden mindre enn eller er lik 0 og på andre siden skriver vi større enn eller er lik minCanvas.width.</p>
+                
+                <div class="eks_kode">
+                    <p>
+                        ctx.fillStyle = firkant.farge <br>
+                        ctx.fillRect(firkant.xpos, firkant.ypos, firkant.bredde, firkant.hoyde) <br>
+                        if(firkant.xpos &lt= 0) { <br>
+                            &emsp;    firkant.xretning = -1 <br>
+                        } <br>
+                        if(firkant.xpos + firkant.bredde >= mincanvas.width) { <br>
+                            &emsp;    firkant.xretning = -1 <br>
+                        } <br>
+                        <br>
+                        firkant.xpos = firkant.xpos + (firkant.xretning * firkant.xfart) <br>
+                        tegnFirkant()
+                    </p>
+                </div>
+
+                
+
+            </div>
+            <div id="deloverskrifter_13">
+                <h2>Å styre firkanten med piltaster</h2>
+                <p>Vi skal nå gjøre at vi kan styre firkanten med piltastene på tastaturet. Dette kan vi gjøre på JavaScript for på JavaScript har alle taster en egen tallkode. For å finne ut tallkoden så logger vi alle tastetrykk til console. </p>
+                <p>Som man kan se i koden har vi brukt document.onkeydown som registrer om vi trykker ned en tast imens vi er på nettsiden. Når vi ser på tallkodene vi nå har logget ved å trykke på dem inne på siden så har tastene kodene 37, 38, 39, 40. venstre er 37 og så gar det med klokka til 40. Nå kan vi bruke if-setninger for å sjekke hvilken tallkode som blir klikket.</p>
+            
+
+                <div class="eks_kode">
+                    <p>
+                       document.onkeydown = function(evt){ <br>
+                        &emsp; var tallkode = evt.keyCode <br>
+                        &emsp; console.log(tallkode) <br>
+                       }
+                    </p>
+                </div>
+
+                <div class="eks_kode">
+                    <p>
+                        document.onkeydown = function(evt){ <br>
+                            &emsp;    var tallkode = evt.keyCode <br>
+                            &emsp;    if(tallkode === 37) { <br>
+                                &emsp;&emsp;        firkant.xretning = -1 <br>
+                                &emsp;    } <br>
+                                &emsp;    if(tallkode === 39) { <br>
+                                    &emsp;&emsp;        firkant.xretning = -1 <br>
+                                    &emsp;    } <br>
+                           }
+                    </p>
+                </div>
+                
+            
+            </div>
+            <div id="deloverskrifter_14">
+                <h2>Firkant som beveger seg</h2>
+                    <p>Her er den ferdige koden av firkanten som vi har jobbet på nå. Hvis denne koden <br> ikke funker for deg kan det godt være at den har en annen tallkode, så da burde du utforske det.</p>
+
+                <div class="eks_kode">
+                    <p>
+                        &ltbody&gt <br>
+                        &emsp;    &ltcanvas id="minCanvas" width="400" height="100"&gt&lt/canvas&gt <br>
+                        &emsp;        &ltscript&gt <br>
+                        &emsp;&emsp;            let minCanvas = document.getElementById("minCanvas") <br>
+                        &emsp;&emsp;            let ctx = minCanvas.getContext("2d") <br>
+                        &emsp;&emsp;            let firkant = { <br>
+                            &emsp;&emsp;&emsp;                "bredde": 40, <br>
+                            &emsp;&emsp;&emsp;                "hoyde": 20, <br>                                     
+                            &emsp;&emsp;&emsp;                "farge": "DarkGreen", <br>
+                            &emsp;&emsp;&emsp;                "xpos": 180, <br>
+                            &emsp;&emsp;&emsp;                "ypos": 40, <br>
+                            &emsp;&emsp;&emsp;                "xfart": 3, <br>
+                            &emsp;&emsp;&emsp;                "xretning": 1, <br>
+                            &emsp;&emsp;            } <br>
+                            &emsp;&emsp;            function tegnFirkant() { <br>
+                                &emsp;&emsp;&emsp;                ctx.fillStyle = "DarkOrange" <br>
+                                &emsp;&emsp;&emsp;                ctx.fullRect(0, 0, 400, 100) <br>
+                                &emsp;&emsp;&emsp;               ctx.fillStyle = firkant.farge <br>
+                                &emsp;&emsp;&emsp;               ctx.fullRect(firkant.xpos, firkant.ypos, firkant.bredde, firkant.hoyde) <br>
+                                &emsp;&emsp;&emsp;               firkant.xpos = firkant.xpos + (firkant.xretning * firkant.xfart) <br>
+                                &emsp;&emsp;&emsp;               if(firkant.xpos &lt= 0) { <br>
+                                    &emsp;&emsp;&emsp;&emsp;                   firkant.xretning = -1 <br>
+                                    &emsp;&emsp;&emsp;               } <br>
+                                    &emsp;&emsp;&emsp;                if(firkant.xpos + firkant.bredde &gt= minCanvas.width) { <br>
+                                        &emsp;&emsp;&emsp;&emsp;                    frikant.xretning = -1 <br>
+                                        &emsp;&emsp;&emsp;                } <br>
+                                        &emsp;&emsp;&emsp;                requestAnimationFrame(tegnFirkant) <br>
+                                        &emsp;&emsp;            } <br>
+                                        &emsp;&emsp;    tegnFirkant() <br>
+                                        &emsp;&emsp; document.onkeydown = function(evt){ <br>
+                                            &emsp;&emsp;&emsp; var tallkode = evt.keyCode <br>
+                                            &emsp;&emsp;&emsp; if(tallkode === 37) { <br>
+                                                &emsp;&emsp;&emsp;&emsp;     firkant.xretning = -1 <br>
+                                                &emsp;&emsp;&emsp; } <br>
+                                                &emsp;&emsp;&emsp; if(tallkode === 39) { <br>
+                                                    &emsp;&emsp;&emsp;&emsp;    firkant.xretning = -1 <br>
+                                                    &emsp;&emsp;&emsp;} <br>
+                                                    &emsp;&emsp; } <br>
+                                                    &emsp;&lt/script&gt <br>
+                        &lt/body&gt
+                    </p>
+                </div>
+                <canvas id="minCanvas" ></canvas>
+            </div>
+        </div>
+
+        <div class="delkapittel">
+            <h1 id="link3">Veggtennis</h1>
+            <div id="deloverskrifter_15">
+                <h2>Funksjonsdrevet spill</h2>
+                <div>
+                    <p>I dette delkapittelet skal vi fokusere på å lage spillet veggtennis. I dette spillet trengs en bane, poeng og rekord vist på skjermen, en racket og en ball. Ballen skal sprette frem og tilbake til den treffer veggen bak racketen og avslutter spillet. Her er delene for spillet:</p>
+                    <p>Hele denne koden kunne vært inne i en funksjon, men for enkelthetens og ryddighetens skyld så deler vi det opp i flere funksjoner så det er enklere å jobbe med og finne mulige feil. Vi setter også inn en rekursiv funksjon som vi kaller gameLoop hvor vi samler alle funksjonene som skal aktiveres når spillet går. Vi lager en variabel som heter theGameOn og setter den til true for å bruke i en if-setning som velger om spillet skal bli kalt på. Vi skal senere se på hvordan avslutte spillet. Til nå i koden vår vil funksjonen gameLoop starte og se at theGameOn = true og derfor starte gameLoop igjen. De andre funksjonene logger bare oppgaven sin til console for nå.</p>
+                </div>
+                <div class="eks_kode">
+                    <p>
+                        &ltbody&gt <br>
+                        &emsp;    &ltcanvas width="600" height="400" id="minCanvas"&gt&lt7canvas&gt <br>
+                        &emsp;    &ltscript&gt <br>
+                        &emsp;&emsp;        let minCanvas = document.getElementById("minCanvas") <br>
+                        &emsp;&emsp;        let ctx = minCanvas.getContext("2d") <br>
+                        &emsp;&emsp;       let theGameIsOn = true <br>
+                        &emsp;&emsp;       function tegnBane() { <br>
+                            &emsp;&emsp;&emsp;           console.log("Tegner opp banen") <br>
+                            &emsp;&emsp;       } <br>
+                            &emsp;&emsp;        function tegnBall() { <br>
+                                &emsp;&emsp;&emsp;           console.log("Tegner opp ballen") <br>
+                                &emsp;&emsp;        } <br>
+                                &emsp;&emsp;       function tegnRacket() { <br>
+                                    &emsp;&emsp;&emsp;            console.log("Tegner opp racketen") <br>
+                                    &emsp;&emsp;        } <br>
+                                    &emsp;&emsp;        function skjekkOmBallTrefferRacketen() { <br>
+                                        &emsp;&emsp;&emsp;            console.log("Sjekker om ballen treffer racketen") <br>
+                                        &emsp;&emsp;        } <br>
+                                        &emsp;&emsp;        function skjekkOmBallTrefferVegg() { <br>
+                                            &emsp;&emsp;&emsp;            console.log("Skjekker om ballen treffer veggen") <br>
+                                            &emsp;&emsp;        } <br>
+                                            &emsp;&emsp;       function skjekkOmBallErUtenforBanen() { <br>
+                                                &emsp;&emsp;&emsp;           console.log("Skjekker om ballen er utenfor banen") <br>
+                                                &emsp;&emsp;       } <br>
+                                                &emsp;&emsp;       function gameLoop() { <br>
+                                                    &emsp;&emsp;&emsp;           tegnBane() <br>
+                                                    &emsp;&emsp;&emsp;           tegnBall() <br>
+                                                    &emsp;&emsp;&emsp;           tegnRacket() <br>
+                                                    &emsp;&emsp;&emsp;           skjekkOmBallTrefferRacketen() <br>
+                                                    &emsp;&emsp;&emsp;           skjekkOmBallTrefferVegg() <br>
+                                                    &emsp;&emsp;&emsp;           skjekkOmBallErUtenforBanen() <br>
+                                                    &emsp;&emsp;&emsp;           if(theGameIsOn) { <br>
+                                                        &emsp;&emsp;&emsp;&emsp;               requestAnimationFrame(gameLoop) <br>
+                                                        &emsp;&emsp;&emsp; } <br>
+                                                        &emsp;&emsp;} <br>
+                                                        &emsp;&emsp; gameLoop() <br>
+                                                        &emsp;&lt/script&gt <br>
+                        &lt/body&gt
+                    </p>
+                </div>
+            
+            </div>
+            <div id="deloverskrifter_16">
+                <h2>1. Å tegne en firkantet bane</h2>
+                <p>Vi farger banen grønn for å minne om gress og tar med en linje for å makere midten av banen. Vi danner et objekt kalt bane hvor vi legger inn alle egenskapene til banen slik som høyde, lengde og farger. Så henter vi opp denne informasjonen til funksjonen tegnBane() via dot-notasjon </p>
+            
+                <div class="eks_kode">
+                    <p>
+                        let bane = { <br>
+                            &emsp;    bredde: minCanvas.width, <br>
+                            &emsp;    hoyde: minCanvas.width, <br>
+                            &emsp;    gressfarge: "DarkGreen", <br>
+                            &emsp;    linjefarge: "white", <br>
+                            &emsp;    linjetykkelse: 4 <br>
+                        } <br>
+                        function tegnBane() { <br>
+                            &emsp;    ctx.fillStyle = bane.gressfarge <br>
+                            &emsp;    ctx.fillRect(0, 0, bane.bradde, bane.hoyde) <br>
+                            &emsp;    ctx.fillStyle = bane.linjefarge <br>
+                            &emsp;    ctx.fillRect(bane.bredde/2 - bane.linjetykkelse/2, 0, bane.linjetykkelse, bane.hoyde) <br>
+                        }
+                    </p>
+                </div>
+            
+            </div>
+            <div id="deloverskrifter_17">
+                <h2>2. Tegne en ball som flytter seg</h2>
+                <p>Nå skal vi tegne inn ballen så vi lager igjen et objekt som inneholder all informasjonen til ballen som fart, retning, farge og størrelse. Deretter bruker vi dot-notasjon igjen for å hente frem denne dataen i funksjonen tegnBall(). Denne funksjonen lager sirkelen ved hjelp av arc og også forandrer xpos og xpos til neste gang den kjører.</p>
+            
+                <div class="eks_kode">
+                    <p>
+                        let ball = { <br>
+                            &emsp;    radius: 7, <br>
+                            &emsp;    xpos: 100, <br>
+                            &emsp;    ypos: 100, <br>
+                            &emsp;    farge: "yellow", <br>
+                            &emsp;    xretning: -1, <br>
+                            &emsp;    yretning: 1, <br>
+                            &emsp;    xfart: 4, <br>
+                            &emsp;    yfart: 4, <br>
+                        } <br>
+                        function tegnBall() { <br>
+                            &emsp;    ctx.beginPath() <br>
+                            &emsp;    ctx.arc(ball.xpos, ball.ypos, ballradius, 0, Math.PI*2) <br>
+                            &emsp;    ctx.closePath() <br>
+                            &emsp;    ctx.fillStyle = ball.farge <br>
+                            &emsp;    ctx.fill() <br>
+                            &emsp;    ball.xpos = ball.xpos + ball.xfart * ball.xretning <br>
+                            &emsp;    ball.ypos = ball.ypos + ball.yfart * ball.yretning <br>
+                        } 
+                    </p>
+                </div>
+            
+            </div>
+            <div id="deloverskrifter_18">
+                <h2>3. Snu retningen på ballen når den treffer en kant</h2>
+                <p>Nå skal vi snu ballen når den treffer den øverste, den nederste eller den vestre veggen (høyre vegg kommer senere). Vi gjør dette ganske enkelt ved å bytte 1 til -1 eller -1 til 1 når de treffer veggene. De tre posisjonene vi må passe oss for da er når venstre kant av ballen er &gt= 0, når ballen er >= banehøyde og når øvre kant av ballen er &lg= 0. Husk at på sirkler så vil du gå til ballens radius ikke diameter.</p>
+            
+                <div class="eks_kode">
+                    <p>
+                        function skjekkOmBallTrefferVegg() { <br>
+                            &emsp;    if(ball.xpos &lt= ball.radius) { <br>
+                                &emsp;&emsp;        ball.xretning = 1 <br>
+                                &emsp;    } <br>
+                                &emsp;    if(ball.ypos + ball.radius &gt= bane.hoyde) { <br>
+                                    &emsp;&emsp;        ball.yretning = -1 <br>
+                                    &emsp;    } <br>
+                                    &emsp;    if(ball.ypos &lt= ball.radius) { <br>
+                                        &emsp;&emsp;        ball.yretning = 1 <br>
+                                        &emsp;    } <br>
+                        }
+                    </p>
+                </div>
+            
+            </div>
+            <div id="deloverskrifter_19">
+                <h2>4. Tegne en racket og styre den med piltaster</h2>
+                <p>Vi skal nå starte å lage racketen. Vi starter med å definere den som et objekt og legge til en del egenskaper. Deretter trengs det en funksjon som tagner den. Nå skal vi gå over på å finne ut av tastene. Du husker fra et tidligere avsnitt av at alle taster har egen tallkode. Nå skal vi først lage en funksjon på document.onkeydown som sjekker om du har tastet inn opp eller ned knappen på piltastene og ut ifra det gjør om retningen til funksjonen. Deretter er det viktig at vi sørger for at racketen står stille om vi slipper taket på tastene. Dette gjør vi ved å lage en funksjon på document.onkeyup som igjen tittet etter riktig tallkode, men også retningen. Så nå for at racketen skal stoppe ved enden så legger vi til en if-setning som ser om racketen er utafor canvas-elementet. Vi legger denne if-setningen inn i funskjonen tegnRacket().</p>
+            <div>
+                <div class="eks_kode">
+                    <p>
+                        let racket = { <br>
+                            &emsp;    "bredde": 10, <br>
+                            &emsp;    "hoyde": 50, <br>
+                            &emsp;    "farge": "white", <br>
+                            &emsp;    "xpos": bane.bredde - 15, <br>
+                            &emsp;    "ypos": bane.hoyde/2, <br>
+                            &emsp;    "yretning": 0, <br>
+                            &emsp;    "yfart": 5 <br>
+                        } <br>
+                        function tegnRacket() { <br>
+                            &emsp;    ctx.fillStyle = racket.farge <br>
+                            &emsp;    ctx.fillRect(racket.xpos, racket.ypos, racket.bredde, racket.hoyde) <br>
+                            &emsp;    racket.ypos = racket.ypos + (racket.yfart * racket.yretning) <br>
+                        }
+                    </p>
+                </div>
+
+                <div class="eks_kode">
+                    <p>
+                        document.onkeydown = function(evt) { <br>
+                            &emsp;    let tastekode = evt.keyCode <br>
+                            &emsp;    if(tastekode === 38) { <br>
+                                &emsp;&emsp;        racket.yretning = -1 <br>
+                                &emsp;    } <br>
+                                &emsp;    if(tastekode === 40) { <br>
+                                    &emsp;&emsp;        racket.yretning = 1 <br>
+                                    &emsp;    }
+                        }
+                    </p>
+                </div>
+            </div>
+            
+                <div class="eks_kode">
+                    <p>
+                        document.onkeyup = function(evt) { <br>
+                            &emsp;    let tastekode = evt.keyCode <br>
+                            &emsp;    if(tastekode === 38 && racket.yretning === -1) { <br>
+                                &emsp;&emsp;        racket.yretning = 0 <br>
+                                &emsp;    } <br>
+                                &emsp;    if(tastekode === 40 && racket.yretning === 1) { <br>
+                                    &emsp;&emsp;       racket.yretning = 0 <br>
+                                    &emsp;    } <br>
+                        }
+                    </p>
+                </div>
+
+                <div class="eks_kode">
+                    <p>
+                        function tegnRacket() { <br>
+                            &emsp;    ctx.fillStyle = racket.farge <br>
+                            &emsp;    ctx.fillRect(racket.xpos, racket.ypos, racket.bredde, racket.hoyde) <br>
+                            &emsp;    if(racket.ypos &lt= 0 && racket.yretning === -1) { <br>
+                                &emsp;&emsp;        retun <br>
+                                &emsp;    } <br>
+                                &emsp;    if(racket.ypos + racket.hoyde >= bane.hoyde &&racket.yretning === 1) { <br>
+                                    &emsp;&emsp;        return <br>
+                                    &emsp;    } <br>
+                                    &emsp;    racket.ypos = racket.ypos + racket.yfart * racket.yretning <br>
+                        }
+                    </p>
+                </div>
+            
+            </div>
+            <div id="deloverskrifter_20">
+                <h2>5. Sjekke om ballen treffer racketen</h2>
+                <p>Nå må vi passe på at racketen faktisk fungerer som en racket. For å finne et punkt der racketen er i kontakt med ballen så må den oppfylle alle disse forutsetningene:</p>
+                <p>Nå i koden må vi sette inn disse forutsetningene som boolske variabler. I dette trinnet er det viktig å huske på radiusen til ballen. Så lager vi en if-setning som sjekker om alle disse er true og hvis de er det så snus ballens x-retning til -1.</p>
+            
+                <div class="eks_kode">
+                    <p>
+                        function skjekkOmBallTrefferRacketen() { <br>
+                            &emsp;    let ballenErTilVenstre = ball.xpos + ball.radius &lt racket.xpos <br>
+                            &emsp;    let ballenErTilHoyre = ball.xpos - ball.radus &gt racket.xpos + racket.bredde <br>
+                            &emsp;    let ballenErOver = ball.ypos + ballradius &lt racket.ypos <br>
+                            &emsp;    let ballenErUnder = ball.ypos - ball.radius &gt racket.ypos + racket.hoyde <br>
+                            &emsp;    if(!ballenErTilVenstre && !ballenErTilHoyre && !ballenErOver && !ballenErUnder) { <br>
+                                &emsp;&emsp;        ball.xretning = -1 <br>
+                                &emsp;    } <br>
+                        }
+                    </p>
+                </div>
+            
+            </div>
+            <div id="deloverskrifter_21">
+                <h2>6. Å telle poeng og ta vare på reckorden</h2>
+                <p>For å gjøre spillet mer interessant så ønsker vi nå å legge til poeng og rekord. Hver gang ballen treffer racketen får du et mer poeng og hvis du får mer enn rekorden så lagres den nye rekorden i localStorage. Vi starter med å legge til elementene i html-dokumentet over canvas-elementet og styla det i CSS. Så definerte vi en variabel kalt poeng og en kalt rekord. Dermed legger vi inn koden poeng = poeng + 1 inn i if-setningen som finner ut om ballen treffer racketen. For å skirve det ut pent på skjermen skriver vi det ut som: ... = «Poeng» + poeng. Videre skal vi kunne lagre rekord som en variabel på lokalStorage, men da burde vi først sjekke om det er noe lagret under det navnet fra før. Vi gjør dette ved å sjekke om rekord === undefined. Så nå til slutt så sjekker man om poeng er mer enn rekord og hvis det så lagrer du poeng som ny rekord.</p>
+            <div>
+                <div class="eks_kode">
+                    <p>
+                        &ltdiv id="divPoeng"&gt <br>
+                        &emsp;    &lth1 id="hdnPoeng"&gtPoeng: 0&lt/h1&gt <br>
+                        &emsp;    &lth1 id="hdnRecord"&gtRecord: 0&lt/h1&gt <br>
+                        &lt/div&gt
+                    </p>
+                </div>
+
+                <div class="eks_kode">
+                    <p>
+                        let hdnPoeng = document.getElementById("hdnPoeng") <br>
+                        let hdnRecord = document.getElementById("hdnRecord") <br>
+                        let poeng = 0
+                    </p>
+                </div>
+
+                <div class="eks_kode">
+                    <p>
+                        if(!ballenErTilVenstre && !ballenErTilHoyre && !ballenErOver && !ballenErUnder) { <br>
+                            &emsp;    ball.xretning = -1 <br>
+                            &emsp;    poeng += 1 <br>
+                            &emsp;    hdnPoeng.innerHTML = "Poeng: " + poeng <br>
+                        }
+                    </p>
+                </div>                
+
+                
+
+                <div class="eks_kode">
+                    <p>
+                        let poeng = 0 <br>
+                        if(localStorage.record === undefined) { <br>
+                            &emsp;    localStorage.record = 0 <br>
+                        } <br>
+                        hdnRecord.innerHTML = "Record: " + localStorage.record
+
+                    </p>
+                </div>
+                
+</div>
+                
+
+                <div class="eks_kode">
+                    <p>
+                        if(!ballenErTilVenstre && !ballenErTilHoyre && !ballenErOver && !ballenErUnder) { <br>
+                            &emsp;    ball.xretning = -1 <br>
+                            &emsp;    poeng += 1 <br>
+                            &emsp;    hdnPoeng.innerHTML = "Poeng: " + poeng <br>
+                            &emsp;    if(poeng &gt localStorage.record) { <br>
+                                &emsp;&emsp;        localStorage.record = poeng <br>
+                                &emsp;&emsp;        hdnRecord.innerHTML = "Ny record: " + poeng <br>
+                                &emsp;&emsp;        hdnRecord.style.color = "DarkGreen" <br>
+                                &emsp;    } <br>
+                        }
+                    </p>
+                </div>
+
+                <div class="eks_kode">
+                    <p>
+                        &ltstyle&gt <br>
+                        &emsp;    #minCanvas { <br>
+                            &emsp;&emsp;        border: 20px solid DarkOrange; <br>
+                            &emsp;&emsp;        boder-right: none; <br>
+                            &emsp;&emsp;        border-top; none <br>
+                            &emsp;    } <br>
+                            &emsp;    #divPoeng { <br>
+                                &emsp;&emsp;        width: 580px; <br>
+                                &emsp;&emsp;        background-color: DarkOrange; <br>
+                                &emsp;&emsp;        height: 30px; <br>
+                                &emsp;&emsp;        line-height: 30px; <br>
+                                &emsp;&emsp;        padding-left: 20px; <br>
+                                &emsp;&emsp;        padding-right: 20px <br>
+                                &emsp;    } <br>
+                                &emsp;    #hdnPoeng,#hdnRecord { <br>
+                                    &emsp;&emsp;       font-size: 20px; <br>
+                                    &emsp;&emsp;       color: white; <br>
+                                    &emsp;&emsp;        font-family: arial; <br>
+                                    &emsp;&emsp;        margin: 0; <br>
+                                    &emsp;    } <br>
+                                    &emsp;    #hdnPoeng { <br>
+                                        &emsp;&emsp;        float: left <br>
+                                        &emsp;    } <br>
+                                        &emsp;    #hdnReckord { <br>
+                                            &emsp;&emsp;        float: right <br>
+                                            &emsp;    } <br>
+                        &lt/style&gt
+                    </p>
+                </div>
+            
+            </div>
+            <div id="deloverskrifter_22">
+                <h2>7. Sjekke om ballen er utenfor banen</h2>
+                <p>Nå til slutt må programmet vite når det er GAME OVER. Dette gjør vi ved å sette opp en if-setning som ser om ball.x > bane.bredde + ball.radius*2, hvis det er det så setter den theGameOn til false.</p>
+                <div class="eks_kode">
+                    function skjekkOmBallErUtenforBanen() { <br>
+                        &emsp;    if(ball.x &gt bane.bredde + ball.radius * 2) { <br>
+                            &emsp;&emsp;        theGameIsOn = false <br>
+                            &emsp;    } <br>
+                    }
+                </div>
+            </div>
+            <div id="deloverskrifter_23">
+                <h2>Resultat av Veggtennis</h2>
+                <div>
+                    <div id="tennis_poeng">
+                        <h3 id="hdnPoeng">Poeng: 0</h3>
+                        <h3 id="hdnRecord">Record: 0</h3>
+                    </div>
+                    <canvas id="minCanvas_2"></canvas>
+                </div>
+            </div>
+            <div id="deloverskrifter_24">
+                <h2>En motspiller</h2>
+                <p>Vi kan lage en motstander som aldri taper ved å gi den samme y-posisjon som ballen alltid og få ballen til å sprette tilbake når den treffer denne racketen.</p>
+            <div>
+                <div class="eks_kode">
+                    <p>
+                        let motspiller = { <br>
+                            &emsp;    "bredde": 10, <br>
+                            &emsp;    "hoyde": 50, <br>
+                            &emsp;    "farge": "white", <br>
+                            &emsp;    "xpos": 15, <br>
+                            &emsp;    "ypos": ball.ypos <br>
+                        }
+                    </p>
+                </div>
+
+                <div class="eks_kode">
+                    <p>
+                        function tegnMotspiller() { <br>
+                            &emsp;    ctx.fillStyle = motspiller.farge <br>
+                            &emsp;    ctx.fillRect(motspiller.xpos, ball.ypos - motspiller.hoyde/2, motspiller.bredde, motspiller.hoyde) <br>
+                        }
+                    </p>
+                </div>
+            </div>
+            
+            </div>
+            <div id="deloverskrifter_25">
+                <h2>Flaksefugler</h2>
+                <p>La oss nå prøve å kode vår egen knock-off flappy bird med det vi har lært til nå. Vi gjør det slik at bakrunnen er i konstant bevegelse imens fuglen plasseres med funsjonen absolutt. Vi legger nå til en game loop og gravitasjon som påvirker farten i y-retningen.</p>
+                
+                <div>
+                    <div class="eks_kode">
+                        <p>
+                            &ltdiv id="spill"&gt&lt id="fugl"&gt&lt/div&gt&lt/div&gt
+                        </p>
+                    </div>
+
+                    <div class="eks_kode">
+                        <p>
+                            &ltstyle&gt <br>
+                            &emsp;    #spill { <br>
+                                &emsp;&emsp;        position: relative; <br>
+                                &emsp;&emsp;        background-image: url(bakgrunn.png); <br>
+                                &emsp;&emsp;        width: 288px; <br>
+                                &emsp;&emsp;        height: 384px <br>
+                                &emsp;    } <br>
+                                &emsp;     #fugl { <br>
+                                    &emsp;&emsp;        position: absolute; <br>
+                                    &emsp;&emsp;        background-image: url(fugl.png); <br>
+                                    &emsp;&emsp;        width: 34px; <br>
+                                    &emsp;&emsp;        height: 24px; <br>
+                                    &emsp;&emsp;        left: 30px <br>
+                                    &emsp;    } <br>
+                            &lt/style&gt
+                        </p>
+                    </div>
+                </div>
+                <div class="eks_kode">
+                    <p>
+                        &ltscript&gt <br>
+                        &emsp;    let spill = document.getElementById("spill") <br>
+                        &emsp;    let fugl = document.getElementById("fugl") <br>
+                        &emsp;    let krasjhoyde = 360 <br>
+                        &emsp;    let fuglpos = 100 <br>
+                        &emsp;    let fuglenFlyr = true <br>
+                        &emsp;    let gravitasjon = 0.1 <br>
+                        &emsp;    let fallfart = 1 <br>
+                        &emsp;    let bgpos = 0 <br>
+                        &emsp;    let bgfart = -1 <br>
+                        &emsp;    function fly() { <br>
+                            &emsp;&emsp;        fallfart += gravitasjon <br>
+                            &emsp;&emsp;        fuglpos += fallfart <br>
+                            &emsp;&emsp;        fugl.style.top = fuglpos + "px" <br>
+                            &emsp;&emsp;        if(fuglpos &gt krasjhoyde) { <br>
+                                &emsp;&emsp;&emsp;            fuglenFlyr = false <br>
+                                &emsp;&emsp;        } <br>
+                                &emsp;    } <br>
+                                &emsp;    function bevegeBakgrunn() { <br>
+                                    &emsp;&emsp;        bgpos += bgfart <br>
+                                    &emsp;&emsp;        spill.style.backgroundPotition = bgpos + "px 0px" <br>
+                                    &emsp;    } <br>
+                                    &emsp;    function gameLoop() { <br>
+                                        &emsp;&emsp;        bevegeBakgrunn() <br>
+                                        &emsp;&emsp;        fly() <br>
+                                        &emsp;&emsp;        if(fuglenFlyr) { <br>
+                                            &emsp;&emsp;&emsp;            requestAnimationFrame(gameLoop) <br>
+                                            &emsp;&emsp;        } <br>
+                                            &emsp;    } <br>
+                                            &emsp;gameLoop() <br>
+                                            &emsp;function flaks() { <br>
+                                                &emsp;&emsp;fallfart = -4 <br>
+                                                &emsp;} <br>
+                                                &emsp;spill.onclick = flaks <br>
+                        &lt/script&gt
+                    </p>
+                </div>
+                
+                <div id="flakseSpill"><div id="fugl"></div></div>
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <div id="footer">
+        <h1> 10 Spillprogrammering kode 2</h1>
+        <p>Videre ressurser</p>
+        
+    </div>
+</footer>
+
+        <script src="delkapittelene.js"></script>
+        <script src="loading_screen.js"></script>
+        <script src="eksempler.js"></script>
+    </body>
+</html>

@@ -8,106 +8,116 @@ let stokkaOm, currentQuestionindex
 
 const questions = [
     {
-        question: 'What is 1+1',
+        question: 'Hvilken metode brukes vanligvis for å kontinuerlig oppdatere spilltilstanden og gjengi spillet i JavaScript?',
         answers: [
-            {text: "2", correct: true },
-            {text: "3", correct: false },
-            {text: "5", correct: false },
-            {text: "6", correct: false },
+            {text: "setTimeout()", correct: false },
+            {text: "setInterval()", correct: false },
+            {text: "requestAnimationFrame()", correct: true },
+            {text: "clearInterval()", correct: false },
         ]
     },
     {
-        question: 'What is 1+1',
+        question: 'Hva er hovedformålet med Canvas i HTML for spillutvikling',
         answers: [
-            {text: "2", correct: true },
-            {text: "3", correct: false },
-            {text: "5", correct: false },
-            {text: "6", correct: false },
+            {text: "For å lagre spilldata", correct: false },
+            {text: "For å gjengi grafikk", correct: true },
+            {text: "For å administrere spilltilstander", correct: false },
+            {text: "For å håndtere brukerinnspill", correct: false },
         ]
     },
     {
-        question: 'What is 1+1',
+        question: 'Hva representerer ctx-variabelen vanligvis i et Canvas-basert spill?',
         answers: [
-            {text: "2", correct: true },
-            {text: "3", correct: false },
-            {text: "5", correct: false },
-            {text: "6", correct: false },
+            {text: "Hovedspillsløyfen", correct: false },
+            {text: "Spillresultatet", correct: false },
+            {text: "2D-gjengivelseskonteksten", correct: true },
+            {text: "Spillerkarakteren", correct: false },
         ]
     },
     {
-        question: 'What is 1+1',
+        question: 'Hvilken JavaScript-hendelse er best for å oppdage når en tast trykkes?',
         answers: [
-            {text: "2", correct: true },
-            {text: "3", correct: false },
-            {text: "5", correct: false },
-            {text: "6", correct: false },
+            {text: "onclick", correct: false },
+            {text: "onkeydown", correct: true },
+            {text: "onkeypress", correct: false },
+            {text: "onkeyup", correct: false },
         ]
     },
     {
-        question: 'What is 1+1',
+        question: 'Hvilken metode brukes for å tømme Canvas før du tegner spillrammen på nytt?',
         answers: [
-            {text: "2", correct: true },
-            {text: "3", correct: false },
-            {text: "5", correct: false },
-            {text: "6", correct: false },
+            {text: "ctx.clear()", correct: false },
+            {text: "ctx.clearRect()", correct: true },
+            {text: "ctx.reset()", correct: false },
+            {text: "ctx.erase()", correct: false },
         ]
     },
     {
-        question: 'What is 1+1',
+        question: 'Hva er rollen til kollisjonsdeteksjon i et spill?',
         answers: [
-            {text: "2", correct: true },
-            {text: "3", correct: false },
-            {text: "5", correct: false },
-            {text: "6", correct: false },
+            {text: "For å forbedre grafikken", correct: false },
+            {text: "For å spille bakgrunnsmusikk", correct: false },
+            {text: "For å laste inn spillressurser", correct: false },
+            {text: "For å oppdage når spillobjekter samhandler", correct: true }
         ]
     },
     {
-        question: 'What is 1+1',
+        question: 'Hvilken funksjon brukes vanligvis til å generere et tilfeldig tall i JavaScript for spillmekanikk?',
         answers: [
-            {text: "2", correct: true },
-            {text: "3", correct: false },
-            {text: "5", correct: false },
-            {text: "6", correct: false },
+            {text: "Math.random()", correct: true },
+            {text: "Math.randomInt()", correct: false },
+            {text: "Math.rand()", correct: false },
+            {text: "Math.randomNumber()", correct: false },
         ]
     },
     {
-        question: 'What is 1+1',
+        question: 'In JavaScript, which function is used to repeatedly call a function with a fixed time delay?',
         answers: [
-            {text: "2", correct: true },
-            {text: "3", correct: false },
-            {text: "5", correct: false },
-            {text: "6", correct: false },
+            {text: "setInterval()", correct: true },
+            {text: "setTimeout()", correct: false },
+            {text: "requestAnimationFrame()", correct: false },
+            {text: "clearTimeout()", correct: false },
         ]
     },
     {
-        question: 'What is 1+1',
+        question: 'Hva er en "event listener" i sammenheng med JavaScript-spillutvikling?',
         answers: [
-            {text: "2", correct: true },
-            {text: "3", correct: false },
-            {text: "5", correct: false },
-            {text: "6", correct: false },
+            {text: "En funksjon som lytter etter spilllyd", correct: false },
+            {text: "En loop som gjengir frames", correct: false },
+            {text: "En funksjon som reagerer på brukerinnspill eller andre hendelser", correct: true },
+            {text: "En metode for å tegne former", correct: false },
         ]
     }
 ]
 
 startButton.addEventListener("click", startGame)
 nextButton.addEventListener("click", () => {
-    currentQuestionindex++
+    currentQuestionindex+=1
     setNextQuestion()
 })
 
 function startGame() {
     console.log("Quiz started")
     startButton.classList.add("hide")
-    stokkaOm = questions.sort(() => Math.random()-0,5)
+    //stokkaOm = questions.sort(() => Math.random()-0,5)
+    //console.log(stokkaOm)
     currentQuestionindex = 0
     questionConteinerElement.classList.remove("hide")
-    setNextQuestion()
+   setNextQuestion()
+
+   if(startButton.innerText == "Hjem") {
+    console.log("Drar hjem")
+    visitPage()
 }
+}
+
+function visitPage() {
+    window.location='file:///Users/elinewrangell/Desktop/Skole/VGS%202/IT/3.prosjekt/index.html';
+ }
 
 function setNextQuestion() {
     resetState()
-    showquestion(stokkaOm[currentQuestionindex])
+    showquestion(questions[currentQuestionindex])
 
 }
 
@@ -126,11 +136,16 @@ function showquestion(question) {
 }
 
 function resetState() {
-    clearStatusClass(document.body)
+    clearStatusClass()
     nextButton.classList.add("hide")
     while(answerButtonselement.firstChild) {
         answerButtonselement.removeChild(answerButtonselement.firstChild)
     }
+}
+
+function clearStatusClass() {
+    document.body.classList.remove("wrong")
+    document.body.classList.remove("correct")
 }
 
 function selectAnswer(e) {
@@ -140,12 +155,13 @@ function selectAnswer(e) {
     Array.from(answerButtonselement.children).forEach(button => {
         setStatusClass(button, button.dataset.correct)
     })
-    if(stokkaOm.lenght > currentQuestionindex + 1) {
-        nextButton.classList.remove("hide")
-    } else {
-        startButton.innerText = "På nytt?"
-        startButton.classList.remove("hide")
-    }
+    console.log(questions.length)
+    nextButton.classList.remove("hide")
+    
+    startButton.innerText = "Hjem"
+    startButton.classList.remove("hide")
+
+    
     
 }
 
@@ -158,10 +174,7 @@ function setStatusClass(element, correct) {
     }
 }
 
-function clearStatusClass(element) {
-    element.classList.remove("correct")
-    element.classList.remove("wrong")
-}
+
 
 
 

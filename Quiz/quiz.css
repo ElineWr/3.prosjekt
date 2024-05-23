@@ -29,12 +29,17 @@ body.wrong {
 }
 
 .container {
-    width: 800px;
+    width: 1500px;
     max-width: 80%;
     background-color: white;
     border-radius: 5px;
     padding: 10px;
     box-shadow: 0 0 10px 2px;
+    font-size: 30px;
+}
+
+button {
+    font-size: 20px;
 }
 
 .btn-grid {
@@ -68,7 +73,7 @@ body.wrong {
 }
 
 .start-btn, .next-btn {
-    font-size: 24px;
+    font-size: 27px;
     font-weight: bold;
     padding: 10px 20px;
 }

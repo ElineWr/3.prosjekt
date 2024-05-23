@@ -91,9 +91,6 @@ while (farge_tall <= 25) {
     
 }
 
-
-
-
 function burger_meny() {
     let hamburger = document.getElementById("hamburger");
     if (hamburger.style.display === "block") {

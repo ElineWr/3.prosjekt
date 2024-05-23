@@ -154,11 +154,13 @@ function sjekkOmBallTrefferRacket() {
     }
 }
 
+
 function sjekkOmBallErUtenforBanen() {
-    if(ball.x > bane.bredde + ball.radius*2) {
+    if(ball.xpos > bane.bredde + ball.radius*2) {
         theGameOn = false
     }
 }
+
 
 function gameLoop() {
     tegnBane()
@@ -173,7 +175,10 @@ function gameLoop() {
 }
 gameLoop()
 
+
+
+
 // Fuglen
 
-let spill = document.getElementById("flakseSpill")
-let fugl = document.getElementById("fugl")
+//let spill = document.getElementById("flakseSpill")
+//let fugl = document.getElementById("fugl")

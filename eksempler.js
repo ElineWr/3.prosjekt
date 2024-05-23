@@ -31,11 +31,27 @@ tegnFirkant()
 
 document.onkeydown = function(evt) {
     let kode = evt.key
-    if(kode === Object.keys(ArrowRight)) {
+    if(kode === "ArrowRight") {
         firkant_bevege.xretning = -1
     }
-    if(kode === Object.keys(ArrowLeft)) {
+    if(kode === "ArrowLeft") {
         firkant_bevege.xretning = 1
+    }
+    if(kode === "ArrowUp") {
+        racket.yretning = -1
+    }
+    if(kode === "ArrowDown") {
+        racket.yretning = 1
+    }
+}
+
+document.onkeydown = function(evt) {
+    let kode = evt.key
+    if(kode === "ArrowUp" && racket.yretning === -1) {
+        racket.yretning = 0
+    }
+    if(kode === "ArrowDown" && racket.yretning === 1) {
+        racket.yretning = 0
     }
 }
 
@@ -44,6 +60,12 @@ document.onkeydown = function(evt) {
 let minTennisCanvas = document.getElementById("minCanvas_2")
 let ctx_2 = minTennisCanvas.getContext("2d")
 let theGameOn = true
+
+let hdnPoeng = document.getElementById("hdnPoeng")
+let hdnrecord = document.getElementById("hdnrecord")
+let tennisPoeng = 0
+localStorage.tennisRecord = 0
+
 
 let bane = {
     bredde: minTennisCanvas.width,
@@ -122,11 +144,20 @@ function sjekkOmBallTrefferRacket() {
     let ballenErUnder = ball.ypos - ball.radius > racket.ypos + racket.hoyde
     if(!ballenErTilVenstre && !ballenErTilHoyre && !ballenErOver && !ballenErUnder) {
         ball.xretning = -1
+        tennisPoeng += 1
+        hdnPoeng.innerHTML = "Poeng: " + tennisPoeng
+        if(tennisPoeng > localStorage.tennisRecord) {
+            localStorage.tennisRecord = poeng
+            hdnrecord.innerHTML = "Ny rekord: " + tennisPoeng
+            hdnrecord.style.color = "purple"
+        }
     }
 }
 
 function sjekkOmBallErUtenforBanen() {
-
+    if(ball.x > bane.bredde + ball.radius*2) {
+        theGameOn = false
+    }
 }
 
 function gameLoop() {
@@ -137,7 +168,7 @@ function gameLoop() {
     sjekkOmBallTrefferRacket()
     sjekkOmBallErUtenforBanen()
     if(theGameOn) {
-        requestAnimationFrame(gameLoop)
+      requestAnimationFrame(gameLoop)
     }
 }
 gameLoop()

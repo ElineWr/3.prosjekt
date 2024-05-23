@@ -1,10 +1,9 @@
 
 // ------------Delkapitlene sine bakrunnsfarger-------------- 
 
-const delkapittel_farger = ["#60cde4", "#37946e", "#8f553b", "#ac3b3c", "#eec29a", "#8cbb94"] 
+const delkapittel_farger = ["#60cde4", "#37946e", "#8f553b", "#ac3b3c", "#eec29a", "#8cbb94"]
 let forige_farge = "#8cbb94"
 let farge_tall = 1
-let i = 0
 
 let visPoeng = document.getElementById("visPoeng")
 let mus = document.getElementById("mus")
@@ -20,7 +19,7 @@ let musebinge_høyde = 150
 
 // ---- navbar som bytter farge ----
 const navbar = document.querySelector("#i_elementene")
-window.addEventListener("scroll", function() {
+window.addEventListener("scroll", function () {
     if (window.scrollY > 700) {
         navbar.style.backgroundColor = "transparent"
         navbar.style.borderColor = "transparent"
@@ -51,41 +50,45 @@ function LightenDarkenColor(col, amt) {
     let g = (num & 0x0000FF) + amt;
     let newColor = g | (b << 8) | (r << 16);
     return newColor.toString(16);
-  }
+}
 
 
-  let firkant = document.getElementById("firkant")
-  let bredde = 0
-  let hoyde = 0 
-  function bliStor() { 
-     firkant.style.width = bredde + "px" 
-      firkant.style.height = hoyde + "px" 
-      bredde += 1
-      hoyde += 1
-      if(bredde <= 200) { 
-          requestAnimationFrame(bliStor)
-      }
-  } 
-  bliStor()
+let firkant = document.getElementById("firkant")
+let bredde = 0
+let hoyde = 0
+function bliStor() {
+    firkant.style.width = bredde + "px"
+    firkant.style.height = hoyde + "px"
+    bredde += 1
+    hoyde += 1
+    if (bredde <= 200) {
+        requestAnimationFrame(bliStor)
+    }
+}
+bliStor()
 
 
-while (i<=25) {
+while (farge_tall <= 25) {
     let random_farge = delkapittel_farger[Math.floor(Math.random() * delkapittel_farger.length)];
     let border_color1 = random_farge.split("#").pop()
-    let border_farge = LightenDarkenColor(border_color1,-20)
+    let border_farge = LightenDarkenColor(border_color1, -20)
 
-    if ( random_farge !== forige_farge) {
+    if (random_farge !== forige_farge) {
         let deloverskrifter = document.getElementById("deloverskrifter_" + farge_tall)
-        deloverskrifter.style.backgroundColor = random_farge
-        deloverskrifter.style.borderColor = "#"+ border_farge
+        if (deloverskrifter) {
+            deloverskrifter.style.backgroundColor = random_farge
+            deloverskrifter.style.borderColor = "#" + border_farge
 
-        deloverskrifter.style.height = "fit-content"
-        
-        
-        farge_tall++
-        i++
-        forige_farge = random_farge
-    }   
+            deloverskrifter.style.height = "fit-content"
+
+
+            farge_tall++
+            forige_farge = random_farge
+        } else {
+            console.warn("Finner ikke element med id " + "deloverskrifter_" + farge_tall)
+        }
+    }
+    
 }
 
 
@@ -96,15 +99,15 @@ function burger_meny() {
     if (hamburger.style.display === "block") {
         hamburger.style.display = "none";
     } else {
-      hamburger.style.display = "block";
+        hamburger.style.display = "block";
     }
-  }
+}
 
 // ---------Kode 2 eksemplene-----------
 
 // Musen
 
-function merPoeng(){
+function merPoeng() {
     poeng += 10
     console.log(poeng)
     visPoeng.innerHTML = poeng + " poeng"
@@ -112,8 +115,8 @@ function merPoeng(){
 
 
 function flyttMeg() {
-    let xpos = Math.random()*(musebinge_bredde - 100)
-    let ypos = Math.random()*(musebinge_høyde - 100)
+    let xpos = Math.random() * (musebinge_bredde - 100)
+    let ypos = Math.random() * (musebinge_høyde - 100)
     mus_2.style.left = xpos + "px"
     mus_2.style.top = ypos + "px"
     poeng_2 += 10

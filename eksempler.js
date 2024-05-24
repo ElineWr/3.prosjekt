@@ -1,4 +1,4 @@
-// Min Canvas 1
+// Min Canvas 1 
 
 let minCanvas = document.getElementById("minCanvas")
 let ctx = minCanvas.getContext("2d")
@@ -56,6 +56,8 @@ document.onkeydown = function(evt) {
 }
 
 // Min Canvas 2
+
+
 
 let minTennisCanvas = document.getElementById("minCanvas_2")
 let ctx_2 = minTennisCanvas.getContext("2d")
@@ -161,7 +163,6 @@ function sjekkOmBallErUtenforBanen() {
     }
 }
 
-
 function gameLoop() {
     tegnBane()
     tegnBall()
@@ -170,12 +171,11 @@ function gameLoop() {
     sjekkOmBallTrefferRacket()
     sjekkOmBallErUtenforBanen()
     if(theGameOn) {
-      requestAnimationFrame(gameLoop)
-    }
+        requestAnimationFrame(gameLoop)
+    } 
 }
+
 gameLoop()
-
-
 
 
 // Fuglen

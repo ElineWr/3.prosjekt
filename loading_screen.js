@@ -18,7 +18,7 @@ let loading = {
 
 
 counter()
-let load_lengde = setInterval(counter, 10)
+let load_lengde = setInterval(counter, 400)
 
 let bilde = document.querySelector("#load_bilde img")
 function counter() {

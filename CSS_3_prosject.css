@@ -200,10 +200,7 @@ i {
     border: 20px solid white;
     border-top: none;
 
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 99999;
+    
 }
 
 #tennis_poeng {
@@ -228,19 +225,27 @@ i {
     float: right;
 }
 
-#flakseSpill {
-    position: relative;
-    background-image: url(Bilder/flaksefugl_bakrunn.jpeg);
-    width: 288px;
-    height: 384px;
+#footer {
+    padding: 20px;
+    line-height: 40px;
+    background-color: #663a31;
+    border-top: solid black 2px;
+    color: #a48780;
+
 }
 
-#fugl {
-    position: absolute;
-    background-image: url(Bilder/fugl.png);
-    width: 34px;
-    height: 24px;
-    left: 30px
+#footer a {
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    padding-left: 20px;
+}
+
+#footer a:hover {
+    color: rgb(157, 149, 149);
+}
+
+#footer a:active {
+    font-size: smaller;
 }
 
 
